@@ -24,13 +24,20 @@ def main():
     args = parser.parse_args()
 
     random_state = np.random.RandomState(args.random_state)
+
     img = Image.open(args.input_image_path)
+    img_w, img_h = img.size
+
+    print(f"> Processing image from path '{args.input_image_path}' with size {img_w}x{img_h}")
 
     img_compressed, color_palette = image_compress(img, args.colors, random_state)
     img_compressed.save(args.output_image_path)
 
-    print("Color palette:")
-    print(color_palette)
+    print(f"> Saved compressed image to path '{args.output_image_path}' successfully")
+
+    colors_hex = ['#{:02x}{:02x}{:02x}'.format(r, g, b) for r, g, b in color_palette]
+
+    print("> Color palette of compressed image:", " ".join(colors_hex))
 
 
 if __name__ == "__main__":

@@ -23,6 +23,7 @@ def image_compress(
     quant_colors, _ = sq(
         img_colors, n_clusters=colors, max_iter=1, random_state=random_state
     )
+    quant_norm = (quant_colors * 255).astype(np.uint8)
 
     # Reconstructing image by filling each pixel with neighbouring quant color
     colors_distance = np.linalg.norm(img_colors[:, np.newaxis] - quant_colors, axis=-1)
@@ -33,4 +34,4 @@ def image_compress(
     img_restructured = np.reshape(img_quantized, (img_w, img_h, img_c))
     img_reconstructed = (img_restructured * 255).astype(np.uint8)
 
-    return Image.fromarray(img_reconstructed), quant_colors
+    return Image.fromarray(img_reconstructed), quant_norm
