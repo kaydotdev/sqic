@@ -23,12 +23,14 @@ def sq(
     X: np.ndarray,
     n_clusters: int = 2,
     max_iter: int = 10,
-    learning_rate: np.float64 = 0.0,
+    learning_rate: np.float64 = 0.001,
     rank: np.unsignedinteger = 3,
     tol: Optional[np.float64] = None,
     random_state: Optional[np.random.RandomState] = None,
-):
-    n_iter = 0
+) -> Tuple[np.ndarray, np.float64]:
+    if random_state is None:
+        random_state = np.random.RandomState()
+
     X_len, X_dims = X.shape
     random_indices = random_state.choice(X_len, size=1, replace=False)
     opt_quants = np.expand_dims(X[random_indices.item()], axis=0)
@@ -65,6 +67,4 @@ def sq(
         if tol is not None and loss_iter[-1] - current_loss < tol:
             break
 
-        n_iter += 1
-
-    return opt_quants, loss_iter[-1], n_iter
+    return opt_quants, loss_iter[-1]
