@@ -13,7 +13,16 @@ This paper has been submitted for publication in ["Cybernetics and Computer Tech
 
 ## Keywords
 
-...
+non-convex optimization, stochastic quantization, color quantization, lossy compression
+
+## Data
+
+To evaluate the efficiency of the proposed color quantization approach, a comparative analysis was conducted using 
+individual images from the [ImageNet 2012 dataset](https://www.image-net.org/index.php).
+
+Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z.,  Karpathy, A., Khosla, A., Bernstein, 
+M., Berg, A.C., Fei-Fei, L.: ImageNet Large Scale Visual Recognition Challenge. International Journal of Computer 
+Vision (IJCV) **115**(3), 211–252 (2015). https://doi.org/10.1007/s11263-015-0816-y
 
 ## License
 
