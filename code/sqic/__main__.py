@@ -28,15 +28,20 @@ def main():
     img = Image.open(args.input_image_path)
     img_w, img_h = img.size
 
-    print(f"> Processing image from path '{args.input_image_path}' with size {img_w}x{img_h}")
+    print(
+        f"> Processing image from path '{args.input_image_path}' with size {img_w}x{img_h}"
+    )
 
-    img_compressed, color_palette = image_compress(img, args.colors, random_state)
+    img_compressed, color_palette, inertia = image_compress(
+        img, args.colors, random_state
+    )
     img_compressed.save(args.output_image_path)
 
     print(f"> Saved compressed image to path '{args.output_image_path}' successfully")
 
-    colors_hex = ['#{:02x}{:02x}{:02x}'.format(r, g, b) for r, g, b in color_palette]
+    colors_hex = ["#{:02x}{:02x}{:02x}".format(r, g, b) for r, g, b in color_palette]
 
+    print("> Color quantization inertia:", inertia)
     print("> Color palette of compressed image:", " ".join(colors_hex))
 
 

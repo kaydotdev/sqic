@@ -8,8 +8,9 @@ from .quantization import sq
 
 def image_compress(
     image: Image, colors: int, random_state: Optional[np.random.RandomState] = None
-) -> Tuple[Image, np.ndarray]:
-    """Returns compressed instance of original image and the reduced color palette as an instance of ndarray."""
+) -> Tuple[Image, np.ndarray, np.float64]:
+    """Returns a compressed instance of the original image, a reduced color palette as an ndarray, and the quantization
+    inertia value from the last iteration."""
 
     if random_state is None:
         random_state = np.random.RandomState()
@@ -20,7 +21,7 @@ def image_compress(
     img_colors = np.reshape(img_norm, (img_w * img_h, img_c))
 
     # Quantization of the color palette
-    quant_colors, _ = sq(
+    quant_colors, quant_inertia = sq(
         img_colors, n_clusters=colors, max_iter=1, random_state=random_state
     )
     quant_norm = (quant_colors * 255).astype(np.uint8)
@@ -34,4 +35,4 @@ def image_compress(
     img_restructured = np.reshape(img_quantized, (img_w, img_h, img_c))
     img_reconstructed = (img_restructured * 255).astype(np.uint8)
 
-    return Image.fromarray(img_reconstructed), quant_norm
+    return Image.fromarray(img_reconstructed), quant_norm, quant_inertia
