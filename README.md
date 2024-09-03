@@ -7,6 +7,8 @@ by Vladimir Norkin<sup>1,2</sup>, [Anton Kozyriev](mailto:a.kozyriev@kpi.ua)<sup
 
 This paper has been submitted for publication in ["Cybernetics and Computer Technologies" (CCTech)](http://cctech.org.ua/).
 
+![Quantization results](./results/figures/grayscale_quantization.png)
+
 ## Abstract
 
 ...
