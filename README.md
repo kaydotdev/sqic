@@ -11,7 +11,25 @@ This paper has been submitted for publication in ["Cybernetics and Computer Tech
 
 ## Abstract
 
-...
+Lossy image compression algorithms play a crucial role in various domains, including graphics, and image processing. 
+As image information density increases, so do the resources required for processing and transmission. One of the most 
+prominent approaches to address this challenge is color quantization, proposed by Orchard et al. (1991). This technique 
+optimally maps each pixel of an image to a color from a limited palette, maintaining image resolution while 
+significantly reducing information content. Color quantization can be interpreted as a clustering problem (Krishna et 
+al. (1997), Wan (2019)), where image pixels are represented in a three-dimensional space, with each axis corresponding 
+to the intensity of an RGB channel.
+
+However, Norkin et al. (2024) demonstrated that scaling traditional algorithms like K-Means can be challenging for 
+large data, such as modern images with millions of colors. This paper reframes color quantization as a 
+three-dimensional stochastic transportation problem between the set of image pixels and an optimal color palette, 
+where the number of colors is a predefined hyperparameter. We employ Stochastic Quantization (SQ) with a seeding 
+technique proposed by Arthur et al. (2007) to enhance the scalability of color quantization. This method introduces 
+a probabilistic element to the quantization process, potentially improving efficiency and adaptability to diverse 
+image characteristics.
+
+To demonstrate the efficiency of our approach, we present experimental results using images from the ImageNet dataset. 
+These experiments illustrate the performance of our Stochastic Quantization method in terms of compression quality, 
+computational efficiency, and scalability compared to traditional color quantization techniques.
 
 ## Keywords
 
