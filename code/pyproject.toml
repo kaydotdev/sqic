@@ -10,15 +10,16 @@ name = "sqic"
 version = "0.1.0"
 description = "Lossy Image Compression with Stochastic Quantization"
 authors = [
-    {name = "Vladimir Norkin"},
+    {name = "Vladimir Norkin", email = "v.norkin@kpi.ua"},
     {name = "Anton Kozyriev", email = "a.kozyriev@kpi.ua"},
 ]
+readme = "README.md"
 license = {file = "LICENSE.code.md"}
 dependencies = [
     "numpy>=1.26.4,<2",
     "pillow>=10.4.0,<2",
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.8"
 keywords = [
     "non-convex optimization",
     "stochastic quantization",
@@ -29,10 +30,11 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
     "Topic :: Multimedia :: Graphics :: Editors :: Raster-Based",
 ]
 
