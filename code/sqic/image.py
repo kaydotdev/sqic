@@ -1,4 +1,4 @@
-from typing import Tuple, Optional
+from typing import Union, Tuple, Optional
 from PIL import Image
 
 import numpy as np
@@ -7,8 +7,42 @@ from .quantization import sq
 
 
 def compress(
-    image: Image, colors: int, random_state: Optional[np.random.RandomState] = None
+    image: Image,
+    colors: Union[int, np.uint],
+    random_state: Optional[np.random.RandomState] = None,
 ) -> Tuple[Image, np.ndarray, np.float64]:
+    """Compresses an image by reducing its color palette using stochastic color quantization.
+
+    Parameters
+    ----------
+    image : Image
+        The input image to be compressed as a `Pillow` Image object.
+    colors : int or np.uint
+         The number of colors to use in the compressed image, i.e., the size of the optimal color palette.
+    random_state : np.random.RandomState, optional
+        Random state for reproducibility.
+
+    Returns
+    -------
+    Tuple[Image, np.ndarray, np.float64]
+        A tuple containing three elements:
+
+        1. Image: A compressed version of the original image as a PIL Image object.
+
+        2. np.ndarray: The reduced color palette as a numpy array of shape (colors, 3). Each element represents the
+            intensity of each primary RGB color.
+
+        3. np.float64: The quantization inertia from the last iteration, i.e., the minimized Wasserstein
+            (or Kantorovich–Rubinstein) distance between image pixels and optimal color palette.
+
+    Example:
+    --------
+    >>> from PIL import Image
+    >>> import sqic
+    >>> original_image = Image.open("example.jpg")
+    >>> compressed_image, color_palette, inertia = sqic.compress(original_image, colors=16)
+    >>> compressed_image.save("compressed_example.jpg")
+    """
 
     if random_state is None:
         random_state = np.random.RandomState()
