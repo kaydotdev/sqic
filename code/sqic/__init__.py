@@ -1,4 +1,3 @@
-from .image import image_compress
-from .quantization import sq
+from .image import compress
 
-__all__ = ["image_compress", "sq"]
+__all__ = ["compress"]

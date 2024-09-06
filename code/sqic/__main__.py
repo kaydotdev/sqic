@@ -2,7 +2,7 @@ import argparse
 from PIL import Image
 import numpy as np
 
-from sqic.image import image_compress
+import sqic
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
         f"> Processing image from path '{args.input_image_path}' with size {img_w}x{img_h}"
     )
 
-    img_compressed, color_palette, inertia = image_compress(
+    img_compressed, color_palette, inertia = sqic.compress(
         img, args.colors, random_state
     )
     img_compressed.save(args.output_image_path)

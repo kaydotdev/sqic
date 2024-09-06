@@ -25,7 +25,6 @@ def sq(
     max_iter: int = 10,
     learning_rate: np.float64 = 0.001,
     rank: np.unsignedinteger = 3,
-    tol: Optional[np.float64] = None,
     random_state: Optional[np.random.RandomState] = None,
 ) -> Tuple[np.ndarray, np.float64]:
     if random_state is None:
@@ -35,7 +34,7 @@ def sq(
     random_indices = random_state.choice(X_len, size=1, replace=False)
     opt_quants = np.expand_dims(X[random_indices.item()], axis=0)
 
-    # Initialization of quants position
+    # Initial quants seeding
     for _ in range(1, n_clusters):
         pairwise_distance = np.min(
             np.linalg.norm(X[:, np.newaxis] - opt_quants, axis=-1),
@@ -48,9 +47,7 @@ def sq(
         )
         opt_quants = np.vstack((opt_quants, X[next_quant_index]))
 
-    loss_iter = [calculate_loss(X, opt_quants)]
-
-    #
+    # Minimizing the Wasserstein (Kantorovich–Rubinstein) distance between quants iteratively
     for i in range(max_iter):
         for ksi_j in np.random.permutation(X):
             # Find the nearest center
@@ -62,9 +59,4 @@ def sq(
             # Update nearest center
             opt_quants[yi, :] = y - learning_rate * grad_y
 
-        current_loss = calculate_loss(X, opt_quants)
-
-        if tol is not None and loss_iter[-1] - current_loss < tol:
-            break
-
-    return opt_quants, loss_iter[-1]
+    return opt_quants, calculate_loss(X, opt_quants)

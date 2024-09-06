@@ -6,11 +6,9 @@ import numpy as np
 from .quantization import sq
 
 
-def image_compress(
+def compress(
     image: Image, colors: int, random_state: Optional[np.random.RandomState] = None
 ) -> Tuple[Image, np.ndarray, np.float64]:
-    """Returns a compressed instance of the original image, a reduced color palette as an ndarray, and the quantization
-    inertia value from the last iteration."""
 
     if random_state is None:
         random_state = np.random.RandomState()
