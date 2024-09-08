@@ -1,9 +1,6 @@
 # Manages building, testing, and cleaning the code as well as running the code
 # to generate the results and figures for the paper.
 
-PACKAGE_NAME = sqic
-TEST_DIR = tests
-
 
 .PHONY: all
 all: build test
@@ -18,3 +15,8 @@ clean:
 # Build `sqic` package and install in the local environment
 build:
 	pip install --no-deps -e .
+
+.PHONY: test
+# Run the test suite with built-in 'unittest' package
+test:
+	python -m unittest tests/test_calculate_loss.py
