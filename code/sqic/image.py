@@ -11,7 +11,7 @@ def compress(
     colors: Union[int, np.uint],
     random_state: Optional[np.random.RandomState] = None,
 ) -> Tuple[Image, np.ndarray, np.float64]:
-    """Compresses an image by reducing its color palette using stochastic color quantization.
+    """Compresses an image by reducing its color palette using Stochastic Color Quantization.
 
     Parameters
     ----------
@@ -20,7 +20,7 @@ def compress(
     colors : int or np.uint
          The number of colors to use in the compressed image, i.e., the size of the optimal color palette.
     random_state : np.random.RandomState, optional
-        Random state for reproducibility.
+        Random state for reproducibility. Defaults to None.
 
     Returns
     -------
@@ -28,10 +28,8 @@ def compress(
         A tuple containing three elements:
 
         1. Image: A compressed version of the original image as a PIL Image object.
-
         2. np.ndarray: The reduced color palette as a numpy array of shape (colors, 3). Each element represents the
             intensity of each primary RGB color.
-
         3. np.float64: The quantization inertia from the last iteration, i.e., the minimized Wasserstein
             (or Kantorovich–Rubinstein) distance between image pixels and optimal color palette.
 
@@ -54,7 +52,7 @@ def compress(
 
     # Quantization of the color palette
     quant_colors, quant_inertia = sq(
-        img_colors, n_clusters=colors, max_iter=1, random_state=random_state
+        img_colors, n_quants=colors, max_iter=1, random_state=random_state
     )
     quant_norm = (quant_colors * 255).astype(np.uint8)
 

@@ -3,6 +3,10 @@
 #
 # Runs the individual Makefiles from code/ and manuscript/.
 
+.PHONY: all
 all:
 	make -C code all
-	make -C manuscript all
+
+.PHONY: clean
+clean:
+	make -C code clean
