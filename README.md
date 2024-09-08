@@ -1,6 +1,6 @@
 # Stochastic Quantization for Image Compression
 
-by Vladimir Norkin<sup>1,2</sup>, [Anton Kozyriev](mailto:a.kozyriev@kpi.ua)<sup>1</sup>
+by [Anton Kozyriev](mailto:a.kozyriev@kpi.ua)<sup>1</sup>, [Vladimir Norkin](mailto:v.norkin@kpi.ua)<sup>1,2</sup>
 
  - Igor Sikorsky Kyiv Polytechnic Institute, National Technical University of Ukraine, Kyiv, 03056, Ukraine
  - V.M.Glushkov Institute of Cybernetics, National Academy of Sciences of Ukraine, Kyiv, 03178, Ukraine
