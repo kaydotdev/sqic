@@ -184,7 +184,7 @@ def sq(
 
     # Minimizing the Wasserstein (Kantorovich–Rubinstein) distance between two distributions iteratively
     for i in range(max_iter):
-        for ksi_j in np.random.permutation(X):
+        for ksi_j in random_state.permutation(X):
             y, yi = find_nearest_element(opt_quants, ksi_j)  # Find the nearest center
             grad_y = (
                 rank * np.linalg.norm(ksi_j - y, ord=2) ** (rank - 2) * (y - ksi_j)
