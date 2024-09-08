@@ -23,12 +23,24 @@ def calculate_loss(xi: np.ndarray, y: np.ndarray) -> np.float64:
     Raises
     ------
     ValueError
+        If one of the distributions ξ or y is empty.
+    ValueError
         If there is a shape mismatch between individual elements in distribution ξ and y.
+
+    Notes
+    -----
+    The function assumes uniform weights (pᵢ = 1) for all elements in the original distribution.
+    The exponent r in the formula is implicitly set to 1 in this implementation.
     """
 
+    if xi.size == 0 or y.size == 0:
+        raise ValueError("One of the distributions `xi` or `y` is empty.")
+
     if xi.shape[1:] != y.shape[1:]:
-        raise ValueError("The dimensions of individual elements in distribution `xi` and `y` must match. Elements in "
-                         f"`xi` have shape {xi.shape[1:]}, but y elements have shape {y.shape[1:]}.")
+        raise ValueError(
+            "The dimensions of individual elements in distribution `xi` and `y` must match. Elements in "
+            f"`xi` have shape {xi.shape[1:]}, but y elements have shape {y.shape[1:]}."
+        )
 
     pairwise_distance = np.linalg.norm(xi[:, np.newaxis] - y, axis=-1)
     min_distance = np.min(pairwise_distance, axis=-1)
@@ -67,8 +79,10 @@ def find_nearest_element(
     """
 
     if y.shape[1:] != target.shape:
-        raise ValueError("The dimensions of individual elements in `y` and `target` must match. Elements in `y` have "
-                         f"shape {y.shape[1:]}, but `target` tensor has shape {target.shape}.")
+        raise ValueError(
+            "The dimensions of individual elements in `y` and `target` must match. Elements in `y` have "
+            f"shape {y.shape[1:]}, but `target` tensor has shape {target.shape}."
+        )
 
     distance = np.linalg.norm(target - y, axis=1)
     nearest_index = np.argmin(distance)
@@ -144,7 +158,9 @@ def sq(
         raise ValueError("The number of quants must be greater than or equal to 1.")
 
     if max_iter < 1:
-        raise ValueError("The maximum number of iterations must be greater than or equal to 1.")
+        raise ValueError(
+            "The maximum number of iterations must be greater than or equal to 1."
+        )
 
     if random_state is None:
         random_state = np.random.RandomState()
@@ -170,7 +186,9 @@ def sq(
     for i in range(max_iter):
         for ksi_j in np.random.permutation(X):
             y, yi = find_nearest_element(opt_quants, ksi_j)  # Find the nearest center
-            grad_y = rank * np.linalg.norm(ksi_j - y, ord=2) ** (rank - 2) * (y - ksi_j)  # Calculate gradient
+            grad_y = (
+                rank * np.linalg.norm(ksi_j - y, ord=2) ** (rank - 2) * (y - ksi_j)
+            )  # Calculate gradient
             opt_quants[yi, :] = y - learning_rate * grad_y  # Update nearest center
 
     return opt_quants, calculate_loss(X, opt_quants)
