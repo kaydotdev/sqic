@@ -7,7 +7,7 @@ by [Anton Kozyriev](mailto:a.kozyriev@kpi.ua)<sup>1</sup>, [Vladimir Norkin](mai
 
 This paper has been submitted for publication in ["Cybernetics and Computer Technologies" (CCTech)](http://cctech.org.ua/).
 
-![Quantization results](./results/figures/grayscale_quantization.png)
+![Quantization results](./results/figures/color_quantization.png)
 
 ## Abstract
 
