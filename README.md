@@ -9,8 +9,8 @@ This paper has been submitted for publication in ["Cybernetics and Computer Tech
 
 ## Demo
 
-<img src="./results/figures/original_image.png" width="45%" alt="Original image">
-<img src="./results/animations/compressed_image.gif" width="45%" alt="Compressed image">
+<a href="#"><img src="./results/figures/original_image.png" width="45%" alt="Original image"></a>
+<a href="#"><img src="./results/animations/compressed_image.gif" width="45%" alt="Compressed image"></a>
 
 ## Abstract
 
